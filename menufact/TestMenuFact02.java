@@ -1,11 +1,9 @@
 package menufact;
 
-import menufact.facture.exceptions.FactureException;
 import menufact.exceptions.MenuException;
 import menufact.facture.Facture;
-import menufact.plats.PlatAuMenu;
-import menufact.plats.PlatChoisi;
-import menufact.plats.PlatSante;
+import menufact.facture.exceptions.FactureException;
+import menufact.plats.*;
 
 public class TestMenuFact02 {
 
@@ -13,19 +11,20 @@ public class TestMenuFact02 {
         boolean trace = true;
 
         TestMenuFact02 t = new TestMenuFact02();
+        FactoryPlat factoryPlat = new FactoryPlat();
 
-        PlatAuMenu p1 = new PlatAuMenu(0,"PlatAuMenu0",10);
-        PlatAuMenu p2 = new PlatAuMenu(1,"PlatAuMenu1",20);
-        PlatAuMenu p3 = new PlatAuMenu(2,"PlatAuMenu2",30);
-        PlatAuMenu p4 = new PlatAuMenu(3,"PlatAuMenu3",40);
-        PlatAuMenu p5 = new PlatAuMenu(4,"PlatAuMenu4",50);
+        PlatAuMenu p1 = factoryPlat.getPlat(TypePlat.PLATAUMENU,0,"PlatAuMenu0",10,0,0,0);
+        PlatAuMenu p2 = factoryPlat.getPlat(TypePlat.PLATAUMENU,1,"PlatAuMenu1",20,0,0,0);
+        PlatAuMenu p3 = factoryPlat.getPlat(TypePlat.PLATAUMENU,2,"PlatAuMenu2",30,0,0,0);
+        PlatAuMenu p4 = factoryPlat.getPlat(TypePlat.PLATAUMENU,3,"PlatAuMenu3",40,0,0,0);
+        PlatAuMenu p5 = factoryPlat.getPlat(TypePlat.PLATAUMENU,4,"PlatAuMenu4",50,0,0,0);
 
 
-        PlatSante ps1 = new PlatSante(10,"PlatSante0",10,11,11,11);
-        PlatSante ps2 = new PlatSante(11,"PlatSante1",20,11,11,11);
-        PlatSante ps3 = new PlatSante(12,"PlatSante2",30,11,11,11);
-        PlatSante ps4 = new PlatSante(13,"PlatSante3",40,11,11,11);
-        PlatSante ps5 = new PlatSante(14,"PlatSante4",50,11,11,11);
+        PlatAuMenu ps1 = factoryPlat.getPlat(TypePlat.PLATSANTE,10,"PlatSante0",10,11,11,11);
+        PlatAuMenu ps2 = factoryPlat.getPlat(TypePlat.PLATSANTE,11,"PlatSante1",20,11,11,11);
+        PlatAuMenu ps3 = factoryPlat.getPlat(TypePlat.PLATSANTE,12,"PlatSante2",30,11,11,11);
+        PlatAuMenu ps4 = factoryPlat.getPlat(TypePlat.PLATSANTE,13,"PlatSante3",40,11,11,11);
+        PlatAuMenu ps5 = factoryPlat.getPlat(TypePlat.PLATSANTE,14,"PlatSante4",50,11,11,11);
 
 
         Menu m1 = new Menu("menufact.Menu 1");
@@ -37,7 +36,7 @@ public class TestMenuFact02 {
 
 
         t.test1_AffichePlatsAuMenu(trace, p1,p2,p3,p4,p5);
-        t. test2_AffichePlatsSante(trace, ps1,ps2,ps3,ps4,ps5);
+        t.test2_AffichePlatsSante(trace, ps1,ps2,ps3,ps4,ps5);
 
         t.test4_AjoutPlatsAuMenu(trace, m1, p1, p2, ps1, ps2, m2, p3, p4, ps3, ps4);
 
@@ -119,8 +118,8 @@ public class TestMenuFact02 {
     }
 
 
-   private void test2_AffichePlatsSante(boolean trace, PlatSante ps1, PlatSante ps2,
-                                               PlatSante ps3, PlatSante ps4, PlatSante ps5)
+   private void test2_AffichePlatsSante(boolean trace, PlatAuMenu ps1, PlatAuMenu ps2,
+                                        PlatAuMenu ps3, PlatAuMenu ps4, PlatAuMenu ps5)
     {
         System.out.println("=== test2_AffichePlatsSante");
 
@@ -149,10 +148,10 @@ public class TestMenuFact02 {
 
     private void test4_AjoutPlatsAuMenu(boolean trace, Menu m1,
                                         PlatAuMenu p1, PlatAuMenu p2,
-                                        PlatSante ps1, PlatSante ps2,
+                                        PlatAuMenu ps1, PlatAuMenu ps2,
                                         Menu m2,
                                         PlatAuMenu p3, PlatAuMenu p4,
-                                        PlatSante ps3, PlatSante ps4)
+                                        PlatAuMenu ps3, PlatAuMenu ps4)
     {
         System.out.println("=== test4_AjoutPlatsAuMenu");
         System.out.println("=== Ajout de plats au menu 1");
