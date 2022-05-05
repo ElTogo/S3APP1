@@ -124,6 +124,8 @@ public class Facture {
      */
     public void ajoutePlat(PlatChoisi p) throws FactureException
     {
+        // TODO: implementer observer pattern subscriber = chef, publisher = facture
+
         if (etat == FactureEtat.OUVERTE)
             platchoisi.add(p);
         else

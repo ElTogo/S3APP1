@@ -1,4 +1,8 @@
 package menufact.plats.etats;
 
-public class Complet {
+public class Complet implements EtatPlat {
+    @Override
+    public void changerEtat() {
+
+    }
 }

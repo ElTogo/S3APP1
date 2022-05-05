@@ -1,10 +1,13 @@
 package menufact.plats;
 
 import menufact.plats.PlatAuMenu;
+import menufact.plats.etats.EtatPlat;
 
 public class PlatChoisi {
     private PlatAuMenu plat;
     private int quantite;
+
+    private EtatPlat etatPlat;
 
     public PlatChoisi(PlatAuMenu plat, int quantite) {
         this.plat = plat;
@@ -29,5 +32,13 @@ public class PlatChoisi {
 
     public PlatAuMenu getPlat() {
         return plat;
+    }
+
+    public EtatPlat getEtatPlat() {
+        return etatPlat;
+    }
+
+    public void setEtatPlat(EtatPlat etatPlat) {
+        this.etatPlat = etatPlat;
     }
 }
