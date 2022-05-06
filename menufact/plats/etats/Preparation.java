@@ -17,6 +17,6 @@ public class Preparation implements EtatPlat {
 
     @Override
     public String toString() {
-        return etat.toString();
+        return "En préparation";
     }
 }

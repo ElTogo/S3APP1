@@ -19,6 +19,7 @@ public class PlatChoisi {
         return "menufact.plats.PlatChoisi{" +
                 "quantite=" + quantite +
                 ", plat=" + plat +
+                " : " + etatPlat +
                 '}';
     }
 

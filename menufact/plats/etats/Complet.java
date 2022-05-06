@@ -17,6 +17,6 @@ public class Complet implements EtatPlat {
 
     @Override
     public String toString() {
-        return etat.toString();
+        return "Complété";
     }
 }

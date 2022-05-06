@@ -16,6 +16,6 @@ public class Commande implements EtatPlat {
 
     @Override
     public String toString() {
-        return etat.toString();
+        return "Commandé";
     }
 }
