@@ -154,31 +154,14 @@ public class Facture {
      *
      * @return une chaîne de caractères avec la facture à imprimer
      */
-    public String genererFacture()
-    {
-        String lesPlats = new String();
-        String factureGenere = new String();
-
-        int i =1;
-
-
-        factureGenere =   "Facture generee.\n" +
-                          "Date:" + date + "\n" +
-                          "Description: " + description + "\n" +
-                          "Client:" + client.getNom() + "\n" +
-                          "Les plats commandes:" + "\n" + lesPlats;
-
-        factureGenere += "Seq   Plat         Prix   Quantite\n";
-        for (PlatChoisi plat : platchoisi)
-        {
-            factureGenere +=  i + "     " + plat.getPlat().getDescription() +  "  " + plat.getPlat().getPrix() +  "      " + plat.getQuantite() + "\n";
-            i++;
-        }
-
-        factureGenere += "          TPS:               " + tps() + "\n";
-        factureGenere += "          TVQ:               " + tvq() + "\n";
-        factureGenere += "          Le total est de:   " + total() + "\n";
-
-        return factureGenere;
-    }
+    public Date getDate(){return date;}
+    public String getDescription(){return description;}
+    public ArrayList<PlatChoisi> getPlatchoisi(){return platchoisi;}
+    public Client getClient(){return client;}
+    public double getTPSTotal(){return tps();}
+    public double getTVQTotal(){return tvq();}
+    public double getTotal(){return total();}
+    public int getCourant(){return courant;}
+    public double getTPS(){return TPS;}
+    public double getTVQ(){return TVQ;}
 }

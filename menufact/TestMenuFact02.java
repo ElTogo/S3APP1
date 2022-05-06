@@ -2,6 +2,7 @@ package menufact;
 
 import menufact.exceptions.MenuException;
 import menufact.facture.Facture;
+import menufact.facture.FactureView;
 import menufact.facture.exceptions.FactureException;
 import menufact.plats.*;
 
@@ -31,6 +32,7 @@ public class TestMenuFact02 {
         Menu m2 = new Menu("menufact.Menu 2");
 
         Facture f1 = new Facture("Ma facture");
+        FactureView fw1 = new FactureView();
 
         Client c1 = new Client(1,"Mr Client","1234567890");
 
@@ -54,7 +56,7 @@ public class TestMenuFact02 {
         }
 
         try {
-            t.test7_CreerFacture(f1, m1);
+            t.test7_CreerFacture(f1, m1, fw1);
         } catch (FactureException e) {
             System.out.println(e.getMessage());
         }
@@ -73,7 +75,7 @@ public class TestMenuFact02 {
             System.out.println(me);
         }
 
-        t.test9_PayerFacture(f1);
+        t.test9_PayerFacture(f1,fw1);
 
         try {
             t.test8_AjouterPlatsFacture(f1, m1,1);
@@ -100,7 +102,7 @@ public class TestMenuFact02 {
 
         System.out.println("FIN DE TOUS LES TESTS...");
 
-        System.out.println(f1.genererFacture());
+        System.out.println(fw1.genererFacture(f1));
     }
 
     private void test1_AffichePlatsAuMenu(boolean trace, PlatAuMenu p1, PlatAuMenu p2,
@@ -233,7 +235,7 @@ public class TestMenuFact02 {
         }
     }
 
-    private void test7_CreerFacture(Facture f1, Menu m1) throws FactureException
+    private void test7_CreerFacture(Facture f1, Menu m1, FactureView fw1) throws FactureException
     {
         System.out.println("===test7_CreerFacture");
 
@@ -280,7 +282,7 @@ public class TestMenuFact02 {
         System.out.println(f1);
     }
 
-    private void test9_PayerFacture(Facture f1)
+    private void test9_PayerFacture(Facture f1, FactureView fw1)
     {
         System.out.println("===test9_PayerFacture");
 
