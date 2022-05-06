@@ -1,8 +1,22 @@
 package menufact.plats.etats;
 
-public class Incomplet implements EtatPlat {
-    @Override
-    public void changerEtat() {
+import menufact.plats.PlatChoisi;
 
+public class Incomplet implements EtatPlat {
+    private EtatsPlat etat = EtatsPlat.INCOMPLET;
+
+    @Override
+    public void setEtatPlat(PlatChoisi plat) {
+        plat.setEtatPlat(this);
+    }
+
+    @Override
+    public EtatsPlat getEtatPlat() {
+        return etat;
+    }
+
+    @Override
+    public String toString() {
+        return etat.toString();
     }
 }
