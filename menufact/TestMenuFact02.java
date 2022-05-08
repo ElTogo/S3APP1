@@ -1,5 +1,6 @@
 package menufact;
 
+import inventaire.Inventaire;
 import menufact.exceptions.MenuException;
 import menufact.facture.Facture;
 import menufact.facture.FactureController;
@@ -11,9 +12,24 @@ public class TestMenuFact02 {
 
     public static void main(String[] args) {
         boolean trace = true;
-
+        //CRÉATION DES OBJETS
         TestMenuFact02 t = new TestMenuFact02();
         FactoryPlat factoryPlat = new FactoryPlat();
+
+        Menu m1 = new Menu("menufact.Menu 1");
+        Menu m2 = new Menu("menufact.Menu 2");
+
+        Facture f1 = new Facture("Ma facture");
+        FactureView fw1 = new FactureView();
+        FactureController fc1= new FactureController(f1, fw1);
+
+        Client c1 = new Client(1,"Mr Client","1234567890");
+
+        Chef chef1 = Chef.getInstance();
+        Chef chef2 = Chef.getInstance(); //Pour tester le singleton
+
+        Inventaire inventaire1 = Inventaire.getInstance();
+        Inventaire inventaire2 = Inventaire.getInstance(); //Pour tester le singleton
 
         PlatAuMenu p1 = factoryPlat.getPlat(TypePlat.PLATAUMENU,0,"PlatAuMenu0",10);
         PlatAuMenu p2 = factoryPlat.getPlat(TypePlat.PLATAUMENU,1,"PlatAuMenu1",20);
@@ -33,16 +49,6 @@ public class TestMenuFact02 {
         PlatAuMenu pe3 = factoryPlat.getPlat(TypePlat.PLATENFANT, 22, "PlatEnfant0", 30, 0.5);
         PlatAuMenu pe4 = factoryPlat.getPlat(TypePlat.PLATENFANT, 23, "PlatEnfant0", 40, 0.5);
         PlatAuMenu pe5 = factoryPlat.getPlat(TypePlat.PLATENFANT, 24, "PlatEnfant0", 50, 0.5);
-
-
-        Menu m1 = new Menu("menufact.Menu 1");
-        Menu m2 = new Menu("menufact.Menu 2");
-
-        Facture f1 = new Facture("Ma facture");
-        FactureView fw1 = new FactureView();
-        FactureController fc1= new FactureController(f1, fw1);
-
-        Client c1 = new Client(1,"Mr Client","1234567890");
 
 
         t.test1_AffichePlatsAuMenu(trace, p1,p2,p3,p4,p5);
