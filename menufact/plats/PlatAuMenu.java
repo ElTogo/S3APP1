@@ -19,6 +19,13 @@ public class PlatAuMenu {
         this.ingredients = new ArrayList<IngredientInventaire>();
     }
 
+    public PlatAuMenu(int code, String description, double prix, List<IngredientInventaire> ingredients) {
+        this.code = code;
+        this.description = description;
+        this.prix = prix;
+        this.ingredients = ingredients;
+    }
+
     public PlatAuMenu() {
     }
 
