@@ -1,12 +1,14 @@
 package menufact.facture;
 
 import ingredients.IngredientInventaire;
+import ingredients.exceptions.IngredientException;
 import inventaire.Inventaire;
 import menufact.Chef;
 import menufact.Client;
 import menufact.facture.exceptions.FactureException;
 import menufact.plats.PlatChoisi;
 import menufact.plats.etats.Incomplet;
+import menufact.plats.exceptions.PlatException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -131,27 +133,27 @@ public class Facture {
      * @param p un plat choisi
      * @throws FactureException Seulement si la facture est OUVERTE
      */
-    public void ajoutePlat(PlatChoisi p) throws FactureException
-    {
+    public void ajoutePlat(PlatChoisi p) throws FactureException, PlatException, IngredientException {
         if (etat == FactureEtat.OUVERTE) {
             List<IngredientInventaire> ingredientInventaires = Inventaire.getInstance().getLesIngredients();
 
             if (!p.getPlat().getIngredients().isEmpty() || p.getPlat().getIngredients() != null) {
+                throw new PlatException("Un plat doit contenir des ingrédients");
+            }
 
-                for (IngredientInventaire ingredient : p.getPlat().getIngredients()) {
+            for (IngredientInventaire ingredient : p.getPlat().getIngredients()) {
 
-                    if (ingredientInventaires.contains(ingredient)) {
-                        int index = ingredientInventaires.indexOf(ingredient);
+                if (ingredientInventaires.contains(ingredient)) {
+                    int index = ingredientInventaires.indexOf(ingredient);
 
-                        if (ingredient.getQuantite() > ingredientInventaires.get(index).getQuantite()) {
-                            p.setEtatPlat(new Incomplet());
-                            throw new FactureException("Tous les ingrédients d'un plat doivent être en quantité suffisante dans l'inventaire pour être facturé.");
-                        }
-                    }
-                    else {
+                    if (ingredient.getQuantite() > ingredientInventaires.get(index).getQuantite()) {
                         p.setEtatPlat(new Incomplet());
-                        throw new FactureException("Tous les ingrédients d'un plat doivent être en inventaire pour être facturé.");
+                        throw new FactureException("Tous les ingrédients d'un plat doivent être en quantité suffisante dans l'inventaire pour être facturé.");
                     }
+                }
+                else {
+                    p.setEtatPlat(new Incomplet());
+                    throw new FactureException("Tous les ingrédients d'un plat doivent être en inventaire pour être facturé.");
                 }
             }
             platchoisi.add(p);
@@ -167,7 +169,7 @@ public class Facture {
         }
     }
 
-    public void notifyChef(PlatChoisi p) {
+    public void notifyChef(PlatChoisi p) throws IngredientException {
         if (!chefs.isEmpty()) {
             chefs.get(0).update(p);
         }
