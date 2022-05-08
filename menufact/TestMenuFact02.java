@@ -1,5 +1,6 @@
 package menufact;
 
+import ingredients.*;
 import inventaire.Inventaire;
 import menufact.exceptions.MenuException;
 import menufact.facture.Facture;
@@ -8,11 +9,15 @@ import menufact.facture.FactureView;
 import menufact.facture.exceptions.FactureException;
 import menufact.plats.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TestMenuFact02 {
 
     public static void main(String[] args) {
         boolean trace = true;
         //CRÉATION DES OBJETS
+
         TestMenuFact02 t = new TestMenuFact02();
         FactoryPlat factoryPlat = new FactoryPlat();
 
@@ -31,25 +36,33 @@ public class TestMenuFact02 {
         Inventaire inventaire1 = Inventaire.getInstance();
         Inventaire inventaire2 = Inventaire.getInstance(); //Pour tester le singleton
 
-        PlatAuMenu p1 = factoryPlat.getPlat(TypePlat.PLATAUMENU,0,"PlatAuMenu0",10);
-        PlatAuMenu p2 = factoryPlat.getPlat(TypePlat.PLATAUMENU,1,"PlatAuMenu1",20);
-        PlatAuMenu p3 = factoryPlat.getPlat(TypePlat.PLATAUMENU,2,"PlatAuMenu2",30);
-        PlatAuMenu p4 = factoryPlat.getPlat(TypePlat.PLATAUMENU,3,"PlatAuMenu3",40);
-        PlatAuMenu p5 = factoryPlat.getPlat(TypePlat.PLATAUMENU,4,"PlatAuMenu4",50);
+        List<IngredientInventaire> listeIngredient1 = new ArrayList<IngredientInventaire>();
+        listeIngredient1.add(new IngredientInventaire(new Viande(),3));
+        listeIngredient1.add(new IngredientInventaire(new Laitier(),2));
+        listeIngredient1.add(new IngredientInventaire(new Epice(),1));
 
+        List<IngredientInventaire> listeIngredient2 = new ArrayList<IngredientInventaire>();
+        listeIngredient1.add(new IngredientInventaire(new Legume(),2));
+        listeIngredient1.add(new IngredientInventaire(new Fruit(),2));
+        listeIngredient1.add(new IngredientInventaire(new Epice(),1));
 
-        PlatAuMenu ps1 = factoryPlat.getPlat(TypePlat.PLATSANTE,10,"PlatSante0",10,11,11,11);
-        PlatAuMenu ps2 = factoryPlat.getPlat(TypePlat.PLATSANTE,11,"PlatSante1",20,11,11,11);
-        PlatAuMenu ps3 = factoryPlat.getPlat(TypePlat.PLATSANTE,12,"PlatSante2",30,11,11,11);
-        PlatAuMenu ps4 = factoryPlat.getPlat(TypePlat.PLATSANTE,13,"PlatSante3",40,11,11,11);
-        PlatAuMenu ps5 = factoryPlat.getPlat(TypePlat.PLATSANTE,14,"PlatSante4",50,11,11,11);
+        PlatAuMenu p1 = factoryPlat.getPlat(TypePlat.PLATAUMENU,0,"PlatAuMenu0",10, listeIngredient1);
+        PlatAuMenu p2 = factoryPlat.getPlat(TypePlat.PLATAUMENU,1,"PlatAuMenu1",20, listeIngredient1);
+        PlatAuMenu p3 = factoryPlat.getPlat(TypePlat.PLATAUMENU,2,"PlatAuMenu2",30, listeIngredient1);
+        PlatAuMenu p4 = factoryPlat.getPlat(TypePlat.PLATAUMENU,3,"PlatAuMenu3",40, listeIngredient1);
+        PlatAuMenu p5 = factoryPlat.getPlat(TypePlat.PLATAUMENU,4,"PlatAuMenu4",50, listeIngredient1);
+
+        PlatAuMenu ps1 = factoryPlat.getPlat(TypePlat.PLATSANTE,10,"PlatSante0",10, listeIngredient2,11,11,11);
+        PlatAuMenu ps2 = factoryPlat.getPlat(TypePlat.PLATSANTE,11,"PlatSante1",20, listeIngredient2,11,11,11);
+        PlatAuMenu ps3 = factoryPlat.getPlat(TypePlat.PLATSANTE,12,"PlatSante2",30, listeIngredient2,11,11,11);
+        PlatAuMenu ps4 = factoryPlat.getPlat(TypePlat.PLATSANTE,13,"PlatSante3",40, listeIngredient2,11,11,11);
+        PlatAuMenu ps5 = factoryPlat.getPlat(TypePlat.PLATSANTE,14,"PlatSante4",50, listeIngredient2,11,11,11);
 
         PlatAuMenu pe1 = factoryPlat.getPlat(TypePlat.PLATENFANT, 20, "PlatEnfant0", 10, 0.5);
         PlatAuMenu pe2 = factoryPlat.getPlat(TypePlat.PLATENFANT, 21, "PlatEnfant0", 20, 0.5);
         PlatAuMenu pe3 = factoryPlat.getPlat(TypePlat.PLATENFANT, 22, "PlatEnfant0", 30, 0.5);
         PlatAuMenu pe4 = factoryPlat.getPlat(TypePlat.PLATENFANT, 23, "PlatEnfant0", 40, 0.5);
         PlatAuMenu pe5 = factoryPlat.getPlat(TypePlat.PLATENFANT, 24, "PlatEnfant0", 50, 0.5);
-
 
         t.test1_AffichePlatsAuMenu(trace, p1,p2,p3,p4,p5);
         t.test2_AffichePlatsSante(trace, ps1,ps2,ps3,ps4,ps5);
