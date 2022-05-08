@@ -1,15 +1,19 @@
 package inventaire;
 
 import ingredients.Ingredient;
+import ingredients.IngredientInventaire;
 
 import java.util.ArrayList;
 
 public class Inventaire {
     private static Inventaire instanceInventaire;
 
-    private ArrayList<Ingredient> lesIngredients = new ArrayList<Ingredient>();
+    private ArrayList<IngredientInventaire> lesIngredients = new ArrayList<IngredientInventaire>();
 
-    static Inventaire getInstance()
+    private Inventaire() {
+    }
+
+    public static Inventaire getInstance()
     {
         if (instanceInventaire == null)
         {
@@ -18,9 +22,14 @@ public class Inventaire {
         return instanceInventaire;
     }
 
-    public void ajouter (Ingredient ingredient)
+    public void ajouter (IngredientInventaire ingredient)
     {
         lesIngredients.add(ingredient);
     }
-    public void retirer (Ingredient ingredient) { lesIngredients.remove(ingredient); }
+
+    public void retirer (IngredientInventaire ingredient) { lesIngredients.remove(ingredient); }
+
+    public ArrayList<IngredientInventaire> getLesIngredients() {
+        return lesIngredients;
+    }
 }

@@ -1,11 +1,16 @@
 package menufact.facture;
 
+import ingredients.IngredientInventaire;
+import inventaire.Inventaire;
+import menufact.Chef;
 import menufact.Client;
 import menufact.facture.exceptions.FactureException;
 import menufact.plats.PlatChoisi;
+import menufact.plats.etats.Incomplet;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Une facture du systeme Menufact
@@ -14,11 +19,14 @@ import java.util.Date;
  */
 public class Facture {
     private Date date;
+
     private String description;
     private FactureEtat etat;
     private ArrayList<PlatChoisi> platchoisi = new ArrayList<PlatChoisi>();
     private int courant;
     private Client client;
+
+    private List<Chef> chefs;
 
 
     /**********************Constantes ************/
@@ -115,6 +123,7 @@ public class Facture {
         etat = FactureEtat.OUVERTE;
         courant = -1;
         this.description = description;
+        chefs = new ArrayList<Chef>();
     }
 
     /**
@@ -124,12 +133,44 @@ public class Facture {
      */
     public void ajoutePlat(PlatChoisi p) throws FactureException
     {
-        // TODO: implementer observer pattern subscriber = chef, publisher = facture
+        if (etat == FactureEtat.OUVERTE) {
+            List<IngredientInventaire> ingredientInventaires = Inventaire.getInstance().getLesIngredients();
 
-        if (etat == FactureEtat.OUVERTE)
+            if (!p.getPlat().getIngredients().isEmpty() || p.getPlat().getIngredients() != null) {
+
+                for (IngredientInventaire ingredient : p.getPlat().getIngredients()) {
+
+                    if (ingredientInventaires.contains(ingredient)) {
+                        int index = ingredientInventaires.indexOf(ingredient);
+
+                        if (ingredient.getQuantite() > ingredientInventaires.get(index).getQuantite()) {
+                            p.setEtatPlat(new Incomplet());
+                            throw new FactureException("Tous les ingrédients d'un plat doivent être en quantité suffisante dans l'inventaire pour être facturé.");
+                        }
+                    }
+                    else {
+                        p.setEtatPlat(new Incomplet());
+                        throw new FactureException("Tous les ingrédients d'un plat doivent être en inventaire pour être facturé.");
+                    }
+                }
+            }
             platchoisi.add(p);
+            notifyChef(p);
+        }
         else
             throw new FactureException("On peut ajouter un plat seulement sur une facture OUVERTE.");
+    }
+
+    public void addChef(Chef chef) {
+        if (chefs.size() < 1) {
+            chefs.add(chef);
+        }
+    }
+
+    public void notifyChef(PlatChoisi p) {
+        if (!chefs.isEmpty()) {
+            chefs.get(0).update(p);
+        }
     }
 
     /**

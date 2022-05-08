@@ -2,6 +2,7 @@ package menufact.facture;
 
 import menufact.Client;
 import menufact.facture.exceptions.FactureException;
+import menufact.plats.PlatChoisi;
 
 public class FactureController {
     private Facture facture;
@@ -30,5 +31,5 @@ public class FactureController {
     public void fermer() {facture.fermer();}
     public void ouvrir() throws FactureException {facture.ouvrir();}
     public FactureEtat getEtat() {return facture.getEtat();}
-
+    public void ajoutePlat(PlatChoisi p) throws FactureException {facture.ajoutePlat(p);}
 }
