@@ -8,9 +8,7 @@ import menufact.facture.exceptions.FactureException;
 import menufact.plats.*;
 
 public class TestMenuFact02 {
-/*
-ATTETION, AUCUN TESTE N'EST FAIT POUR LES PLATS ENFANTS (ET LE FACTORY ASSOCIÉ)
- */
+
     public static void main(String[] args) {
         boolean trace = true;
 
@@ -30,6 +28,12 @@ ATTETION, AUCUN TESTE N'EST FAIT POUR LES PLATS ENFANTS (ET LE FACTORY ASSOCIÉ)
         PlatAuMenu ps4 = factoryPlat.getPlat(TypePlat.PLATSANTE,13,"PlatSante3",40,11,11,11);
         PlatAuMenu ps5 = factoryPlat.getPlat(TypePlat.PLATSANTE,14,"PlatSante4",50,11,11,11);
 
+        PlatAuMenu pe1 = factoryPlat.getPlat(TypePlat.PLATENFANT, 20, "PlatEnfant0", 10, 0.5);
+        PlatAuMenu pe2 = factoryPlat.getPlat(TypePlat.PLATENFANT, 21, "PlatEnfant0", 20, 0.5);
+        PlatAuMenu pe3 = factoryPlat.getPlat(TypePlat.PLATENFANT, 22, "PlatEnfant0", 30, 0.5);
+        PlatAuMenu pe4 = factoryPlat.getPlat(TypePlat.PLATENFANT, 23, "PlatEnfant0", 40, 0.5);
+        PlatAuMenu pe5 = factoryPlat.getPlat(TypePlat.PLATENFANT, 24, "PlatEnfant0", 50, 0.5);
+
 
         Menu m1 = new Menu("menufact.Menu 1");
         Menu m2 = new Menu("menufact.Menu 2");
@@ -43,6 +47,7 @@ ATTETION, AUCUN TESTE N'EST FAIT POUR LES PLATS ENFANTS (ET LE FACTORY ASSOCIÉ)
 
         t.test1_AffichePlatsAuMenu(trace, p1,p2,p3,p4,p5);
         t.test2_AffichePlatsSante(trace, ps1,ps2,ps3,ps4,ps5);
+        t.test2_AffichePlatEnfant(trace,pe1,pe2,pe3,pe4,pe5);
 
         t.test4_AjoutPlatsAuMenu(trace, m1, p1, p2, ps1, ps2, m2, p3, p4, ps3, ps4);
 
@@ -139,6 +144,20 @@ ATTETION, AUCUN TESTE N'EST FAIT POUR LES PLATS ENFANTS (ET LE FACTORY ASSOCIÉ)
         }
     }
 
+    private void test2_AffichePlatEnfant(boolean trace, PlatAuMenu pe1, PlatAuMenu pe2,
+                                         PlatAuMenu pe3, PlatAuMenu pe4, PlatAuMenu pe5)
+    {
+        System.out.println("=== test2_AffichePlatsSante");
+
+        if(trace)
+        {
+            System.out.println(pe1);
+            System.out.println(pe2);
+            System.out.println(pe3);
+            System.out.println(pe4);
+            System.out.println(pe5);
+        }
+    }
 
     private static void test3_AjoutMenu(boolean trace, Menu m1, Menu m2)
     {
