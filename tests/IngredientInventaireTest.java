@@ -26,6 +26,6 @@ class IngredientInventaireTest {
         inv.setQuantite(2);
         Assertions.assertEquals(2, inv.getQuantite());
         IngredientException e = Assertions.assertThrows(IngredientException.class, () -> {inv.setQuantite(-2);});
-        Assertions.assertEquals("Il n'est pas possible d'avoir une quantité negative", e.getMessage());
+        Assertions.assertEquals("IngredientException: Il n'est pas possible d'avoir une quantité negative", e.getMessage());
     }
 }
