@@ -1,7 +1,7 @@
 package menufact.facture;
 
 import menufact.plats.PlatChoisi;
-
+//TODO : Javadoc (class complete)
 public class FactureView {
     public String genererFacture(Facture facture)
     {

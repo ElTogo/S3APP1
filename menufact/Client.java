@@ -1,5 +1,5 @@
 package menufact;
-
+//TODO : Javadoc (class complete)
 public class Client {
     private int idClient;
     private String nom;

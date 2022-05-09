@@ -5,7 +5,7 @@ import menufact.Client;
 import menufact.facture.exceptions.FactureException;
 import menufact.plats.PlatChoisi;
 import menufact.plats.exceptions.PlatException;
-
+//TODO : Javadoc (class complete)
 public class FactureController {
     private Facture facture;
     private FactureView factureView;

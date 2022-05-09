@@ -4,7 +4,7 @@ import ingredients.Ingredient;
 import ingredients.IngredientInventaire;
 
 import java.util.ArrayList;
-
+//TODO : Javadoc (class complete)
 public class Inventaire {
     private static Inventaire instanceInventaire;
 

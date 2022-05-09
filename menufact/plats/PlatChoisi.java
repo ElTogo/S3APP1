@@ -2,7 +2,7 @@ package menufact.plats;
 
 import menufact.plats.etats.Commande;
 import menufact.plats.etats.EtatPlat;
-
+//TODO : Javadoc (class complete)
 public class PlatChoisi {
     private PlatAuMenu plat;
     private int quantite;

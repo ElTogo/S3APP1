@@ -5,7 +5,7 @@ import menufact.plats.PlatAuMenu;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//TODO : Javadoc (class complete)
 public class PlatSante extends PlatAuMenu {
     private double kcal;
     private double chol;

@@ -4,7 +4,7 @@ import menufact.exceptions.MenuException;
 import menufact.plats.PlatAuMenu;
 
 import java.util.ArrayList;
-
+//TODO : Javadoc (class complete)
 public class Menu {
     private String description;
     private int courant;

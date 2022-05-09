@@ -6,7 +6,7 @@ import inventaire.Inventaire;
 import menufact.plats.PlatChoisi;
 import menufact.plats.etats.CompletServi;
 import menufact.plats.etats.Preparation;
-
+//TODO : Javadoc (class complete)
 public class Chef {
     private static Chef instanceChef;
 
