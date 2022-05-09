@@ -1,23 +1,24 @@
 package menufact.facture;
 
-import ingredients.Ingredient;
 import ingredients.IngredientInventaire;
 import inventaire.Inventaire;
+import menufact.ProcessusCommande;
 import menufact.facture.exceptions.FactureException;
 import menufact.plats.PlatChoisi;
 import menufact.plats.etats.Incomplet;
 
 import java.util.List;
 
-public class InvValidCommand {
+public class InvValidCommand implements ProcessusCommande {
+
     /**
      *
      * @param p le plat à valider
-     * @return
+     * @returns
      * @throws FactureException
      */
     //TODO : faire la javadoc
-    static public boolean invValidation(PlatChoisi p) throws FactureException
+    public boolean invValidation(PlatChoisi p) throws FactureException
     {
         List<IngredientInventaire> ingredientInventaires = Inventaire.getInstance().getLesIngredients();
 
@@ -31,15 +32,22 @@ public class InvValidCommand {
 
                     if (ingredient.getQuantite() > ingredientInventaires.get(index).getQuantite()) {
                         p.setEtatPlat(new Incomplet());
-                        throw new FactureException("Tous les ingrédients d'un plat doivent être en quantité suffisante dans l'inventaire pour être facturé.");
+                        return false;
                     }
                 }
                 else {
                     p.setEtatPlat(new Incomplet());
-                    throw new FactureException("Tous les ingrédients d'un plat doivent être en inventaire pour être facturé.");
+                    return false;
                 }
             }
         }
         return true;
+    }
+
+    @Override
+    public void next(PlatChoisi p) throws FactureException {
+        if (!invValidation(p)) {
+            throw new FactureException("L'inventaire doit contenir tous les ingrédients d'un plat en quantité suffisante pour le facturer.");
+        }
     }
 }
