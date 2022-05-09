@@ -9,7 +9,7 @@ import menufact.plats.etats.Incomplet;
 
 import java.util.List;
 
-public class InvValidCommand implements ProcessusCommande {
+public class ValidationCommand implements ProcessusCommande {
 
     /**
      *

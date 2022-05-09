@@ -1,14 +1,11 @@
 package menufact.facture;
 
-import ingredients.IngredientInventaire;
 import ingredients.exceptions.IngredientException;
-import inventaire.Inventaire;
 import menufact.Chef;
 import menufact.Client;
 import menufact.ProcessusCommande;
 import menufact.facture.exceptions.FactureException;
 import menufact.plats.PlatChoisi;
-import menufact.plats.etats.Incomplet;
 import menufact.plats.exceptions.PlatException;
 
 import java.util.ArrayList;
@@ -28,7 +25,7 @@ public class Facture implements ProcessusCommande {
     private int courant;
     private Client client;
     private List<Chef> chefs;
-    private InvValidCommand validator;
+    private ValidationCommand validator;
 
     /**********************Constantes ************/
     private final double TPS = 0.05;
@@ -126,7 +123,7 @@ public class Facture implements ProcessusCommande {
         courant = -1;
         this.description = description;
         chefs = new ArrayList<Chef>();
-        validator = new InvValidCommand();
+        validator = new ValidationCommand();
     }
 
     /**
