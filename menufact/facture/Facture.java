@@ -134,28 +134,10 @@ public class Facture {
     public void ajoutePlat(PlatChoisi p) throws FactureException
     {
         if (etat == FactureEtat.OUVERTE) {
-            List<IngredientInventaire> ingredientInventaires = Inventaire.getInstance().getLesIngredients();
-
-            if (!p.getPlat().getIngredients().isEmpty() || p.getPlat().getIngredients() != null) {
-
-                for (IngredientInventaire ingredient : p.getPlat().getIngredients()) {
-
-                    if (ingredientInventaires.contains(ingredient)) {
-                        int index = ingredientInventaires.indexOf(ingredient);
-
-                        if (ingredient.getQuantite() > ingredientInventaires.get(index).getQuantite()) {
-                            p.setEtatPlat(new Incomplet());
-                            throw new FactureException("Tous les ingrédients d'un plat doivent être en quantité suffisante dans l'inventaire pour être facturé.");
-                        }
-                    }
-                    else {
-                        p.setEtatPlat(new Incomplet());
-                        throw new FactureException("Tous les ingrédients d'un plat doivent être en inventaire pour être facturé.");
-                    }
-                }
+            if (InvValidCommand.invValidation(p)) {
+                platchoisi.add(p);
+                notifyChef(p);
             }
-            platchoisi.add(p);
-            notifyChef(p);
         }
         else
             throw new FactureException("On peut ajouter un plat seulement sur une facture OUVERTE.");
@@ -202,7 +184,4 @@ public class Facture {
     public double getTPSTotal(){return tps();}
     public double getTVQTotal(){return tvq();}
     public double getTotal(){return total();}
-    public int getCourant(){return courant;}
-    public double getTPS(){return TPS;}
-    public double getTVQ(){return TVQ;}
 }

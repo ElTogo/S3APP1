@@ -30,21 +30,8 @@ public class TestMenuFact02 {
 
         Client c1 = new Client(1,"Mr Client","1234567890");
 
-        Chef chef1 = Chef.getInstance();
-        Chef chef2 = Chef.getInstance(); //Pour tester le singleton
-
-        Inventaire inventaire1 = Inventaire.getInstance();
-        Inventaire inventaire2 = Inventaire.getInstance(); //Pour tester le singleton
-
         List<IngredientInventaire> listeIngredient1 = new ArrayList<IngredientInventaire>();
-        listeIngredient1.add(new IngredientInventaire(new Viande(),3));
-        listeIngredient1.add(new IngredientInventaire(new Laitier(),2));
-        listeIngredient1.add(new IngredientInventaire(new Epice(),1));
-
         List<IngredientInventaire> listeIngredient2 = new ArrayList<IngredientInventaire>();
-        listeIngredient1.add(new IngredientInventaire(new Legume(),2));
-        listeIngredient1.add(new IngredientInventaire(new Fruit(),2));
-        listeIngredient1.add(new IngredientInventaire(new Epice(),1));
 
         PlatAuMenu p1 = factoryPlat.getPlat(TypePlat.PLATAUMENU,0,"PlatAuMenu0",10, listeIngredient1);
         PlatAuMenu p2 = factoryPlat.getPlat(TypePlat.PLATAUMENU,1,"PlatAuMenu1",20, listeIngredient1);
@@ -63,6 +50,21 @@ public class TestMenuFact02 {
         PlatAuMenu pe3 = factoryPlat.getPlat(TypePlat.PLATENFANT, 22, "PlatEnfant0", 30, 0.5);
         PlatAuMenu pe4 = factoryPlat.getPlat(TypePlat.PLATENFANT, 23, "PlatEnfant0", 40, 0.5);
         PlatAuMenu pe5 = factoryPlat.getPlat(TypePlat.PLATENFANT, 24, "PlatEnfant0", 50, 0.5);
+
+        //Ajout des objet à des stockage
+        listeIngredient1.add(new IngredientInventaire(new Legume(),2));
+        listeIngredient1.add(new IngredientInventaire(new Fruit(),2));
+        listeIngredient1.add(new IngredientInventaire(new Epice(),1));
+
+        listeIngredient1.add(new IngredientInventaire(new Viande(),3));
+        listeIngredient1.add(new IngredientInventaire(new Laitier(),2));
+        listeIngredient1.add(new IngredientInventaire(new Epice(),1));
+
+        Inventaire.getInstance().ajouter(new IngredientInventaire(new Epice(), 1));
+        Inventaire.getInstance().ajouter(new IngredientInventaire(new Fruit(), 2));
+        Inventaire.getInstance().ajouter(new IngredientInventaire(new Laitier(), 2));
+        Inventaire.getInstance().ajouter(new IngredientInventaire(new Legume(), 2));
+        Inventaire.getInstance().ajouter(new IngredientInventaire(new Viande(), 3));
 
         t.test1_AffichePlatsAuMenu(trace, p1,p2,p3,p4,p5);
         t.test2_AffichePlatsSante(trace, ps1,ps2,ps3,ps4,ps5);
@@ -130,7 +132,7 @@ public class TestMenuFact02 {
 
         System.out.println("FIN DE TOUS LES TESTS...");
 
-        System.out.println(fw1.genererFacture(f1));
+        System.out.println(fc1.genererFacture());
     }
 
     private void test1_AffichePlatsAuMenu(boolean trace, PlatAuMenu p1, PlatAuMenu p2,

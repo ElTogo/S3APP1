@@ -25,11 +25,6 @@ public class FactureController {
     }
 
     public void associerClient (Client client) {facture.associerClient(client);}
-    public double sousTotal(){return facture.sousTotal();}
-    public double total(){return facture.sousTotal();}
     public void payer() {facture.payer();}
-    public void fermer() {facture.fermer();}
-    public void ouvrir() throws FactureException {facture.ouvrir();}
-    public FactureEtat getEtat() {return facture.getEtat();}
     public void ajoutePlat(PlatChoisi p) throws FactureException {facture.ajoutePlat(p);}
 }
