@@ -2,8 +2,8 @@ package menufact.plats.etats;
 
 import menufact.plats.PlatChoisi;
 
-public class Complet implements EtatPlat {
-    private EtatsPlat etat = EtatsPlat.COMPLET;
+public class CompletServi implements EtatPlat {
+    private EtatsPlat etat = EtatsPlat.COMPLETSERVI;
 
     @Override
     public void setEtatPlat(PlatChoisi plat) {
@@ -17,6 +17,6 @@ public class Complet implements EtatPlat {
 
     @Override
     public String toString() {
-        return "Complété";
+        return "Complété et servi";
     }
 }

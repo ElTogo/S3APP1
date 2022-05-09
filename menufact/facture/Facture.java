@@ -1,12 +1,14 @@
 package menufact.facture;
 
 import ingredients.IngredientInventaire;
+import ingredients.exceptions.IngredientException;
 import inventaire.Inventaire;
 import menufact.Chef;
 import menufact.Client;
 import menufact.facture.exceptions.FactureException;
 import menufact.plats.PlatChoisi;
 import menufact.plats.etats.Incomplet;
+import menufact.plats.exceptions.PlatException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -131,8 +133,7 @@ public class Facture {
      * @param p un plat choisi
      * @throws FactureException Seulement si la facture est OUVERTE
      */
-    public void ajoutePlat(PlatChoisi p) throws FactureException
-    {
+    public void ajoutePlat(PlatChoisi p) throws FactureException, PlatException, IngredientException {
         if (etat == FactureEtat.OUVERTE) {
             if (InvValidCommand.invValidation(p)) {
                 platchoisi.add(p);
@@ -149,7 +150,7 @@ public class Facture {
         }
     }
 
-    public void notifyChef(PlatChoisi p) {
+    public void notifyChef(PlatChoisi p) throws IngredientException {
         if (!chefs.isEmpty()) {
             chefs.get(0).update(p);
         }
