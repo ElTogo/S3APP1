@@ -6,19 +6,38 @@ import inventaire.Inventaire;
 import menufact.plats.PlatChoisi;
 import menufact.plats.etats.CompletServi;
 import menufact.plats.etats.Preparation;
-//TODO : Javadoc (class complete)
+
+/**
+ * Cette classe sert à gérer le chef cuisinier qui prépare les plats, gere les etats des plats et diminue l'inventaire
+ * Desing pattern de singleton pour éviter qu'il y ait plus qu'un chef
+ */
 public class Chef {
     private static Chef instanceChef;
 
     private Inventaire inventaire;
+
+    /**
+     * Constructeur du chef cuisiner (prive car on doit passer par getInstance())
+     */
     private Chef() {
         this.inventaire = Inventaire.getInstance();
     }
 
+    /**
+     * //TODO : javadoc de la fonction
+     * @param p
+     * @throws IngredientException
+     */
     public void update(PlatChoisi p) throws IngredientException {
         preparerPlat(p);
     }
 
+    /**
+     * Prépare un plat
+     * S'assure que les ingrédient sont présent
+     * @param p le plat a préparer
+     * @throws IngredientException s'il manque d'ingrédient
+     */
     public void preparerPlat(PlatChoisi p) throws IngredientException {
         p.setEtatPlat(new Preparation());
         int index;
@@ -38,6 +57,11 @@ public class Chef {
         p.setEtatPlat(new CompletServi());
     }
 
+    /**
+     * Fonction pour recevoir l'instance unique de Chef
+     * Evite qu'il ait plus qu'un chef
+     * @return
+     */
     public static Chef getInstance()
     {
         if (instanceChef == null)

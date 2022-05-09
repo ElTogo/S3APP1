@@ -1,8 +1,16 @@
 package menufact.facture;
 
 import menufact.plats.PlatChoisi;
-//TODO : Javadoc (class complete)
+
+/**
+ * Cette classe sert à implmenter le desing pattern de MVC (partie Controller) de la classe facture
+ */
 public class FactureView {
+    /**
+     * Génere la facture sous forme de string
+     * @param facture la facture qu'on veut générer
+     * @return le string de la facture
+     */
     public String genererFacture(Facture facture)
     {
         String lesPlats = new String();
