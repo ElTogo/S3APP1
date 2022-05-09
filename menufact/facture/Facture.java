@@ -1,13 +1,11 @@
 package menufact.facture;
 
-import ingredients.IngredientInventaire;
 import ingredients.exceptions.IngredientException;
-import inventaire.Inventaire;
 import menufact.Chef;
 import menufact.Client;
+import menufact.ProcessusCommande;
 import menufact.facture.exceptions.FactureException;
 import menufact.plats.PlatChoisi;
-import menufact.plats.etats.Incomplet;
 import menufact.plats.exceptions.PlatException;
 
 import java.util.ArrayList;
@@ -19,17 +17,15 @@ import java.util.List;
  * @author Domingo Palao Munoz
  * @version 1.0
  */
-public class Facture {
+public class Facture implements ProcessusCommande {
     private Date date;
-
     private String description;
     private FactureEtat etat;
     private ArrayList<PlatChoisi> platchoisi = new ArrayList<PlatChoisi>();
     private int courant;
     private Client client;
-
     private List<Chef> chefs;
-
+    private ValidationCommand validator;
 
     /**********************Constantes ************/
     private final double TPS = 0.05;
@@ -87,6 +83,7 @@ public class Facture {
     {
        etat = FactureEtat.PAYEE;
     }
+
     /**
      * Permet de chager l'état de la facture à FERMEE
      */
@@ -126,6 +123,7 @@ public class Facture {
         courant = -1;
         this.description = description;
         chefs = new ArrayList<Chef>();
+        validator = new ValidationCommand();
     }
 
     /**
@@ -134,14 +132,7 @@ public class Facture {
      * @throws FactureException Seulement si la facture est OUVERTE
      */
     public void ajoutePlat(PlatChoisi p) throws FactureException, PlatException, IngredientException {
-        if (etat == FactureEtat.OUVERTE) {
-            if (InvValidCommand.invValidation(p)) {
-                platchoisi.add(p);
-                notifyChef(p);
-            }
-        }
-        else
-            throw new FactureException("On peut ajouter un plat seulement sur une facture OUVERTE.");
+        next(p);
     }
 
     /**
@@ -154,6 +145,7 @@ public class Facture {
             chefs.add(chef);
         }
     }
+
     //TODO : Javadoc (ALEX)
     public void notifyChef(PlatChoisi p) throws IngredientException {
         if (!chefs.isEmpty()) {
@@ -219,4 +211,16 @@ public class Facture {
      * @return le montant des retenu des taxes
      */
     public double getTotal(){return total();}
+
+    @Override
+    public void next(PlatChoisi p) throws FactureException, IngredientException {
+        if (etat == FactureEtat.FERMEE) {
+            throw new FactureException("On peut ajouter un plat seulement sur une facture OUVERTE.");
+        }
+        else {
+            validator.next(p);
+            platchoisi.add(p);
+            notifyChef(p);
+        }
+    }
 }

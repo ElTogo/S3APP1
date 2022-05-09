@@ -40,4 +40,16 @@ public class IngredientInventaire {
         else
             this.quantite = quantite;
     }
+
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (ingredient == ((IngredientInventaire)o).getIngredient()) {
+            return true;
+        }
+        return false;
+    }
 }
