@@ -1,3 +1,5 @@
+package tests;
+
 import menufact.plats.PlatAuMenu;
 import menufact.plats.PlatChoisi;
 import menufact.plats.etats.*;

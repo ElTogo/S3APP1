@@ -1,3 +1,5 @@
+package tests;
+
 import ingredients.Ingredient;
 import ingredients.Viande;
 import ingredients.exceptions.IngredientException;

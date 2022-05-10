@@ -1,3 +1,5 @@
+package tests;
+
 import ingredients.Ingredient;
 import ingredients.IngredientInventaire;
 import menufact.plats.PlatAuMenu;

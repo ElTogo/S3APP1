@@ -1,3 +1,5 @@
+package tests;
+
 import menufact.plats.PlatChoisi;
 import menufact.plats.exceptions.PlatException;
 import org.junit.jupiter.api.Assertions;

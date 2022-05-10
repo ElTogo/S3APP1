@@ -1,3 +1,5 @@
+package tests;
+
 import menufact.plats.FactoryPlat;
 import menufact.plats.PlatAuMenu;
 import menufact.plats.TypePlat;
