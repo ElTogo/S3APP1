@@ -25,7 +25,7 @@ public class Menu {
      * Ajoute un plat au menu
      * @param p le plat a ajouter au menu
      */
-    void ajoute (PlatAuMenu p)
+    public void ajoute (PlatAuMenu p)
     {
         plat.add(p);
     }
