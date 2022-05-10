@@ -65,6 +65,8 @@ class FactureControllerTest {
 
     @Test
     void genererFacture() {
+        String t = fc.genererFacture();
+        System.out.println(t.length());
     }
 
     @Test

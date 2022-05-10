@@ -33,6 +33,6 @@ class IngredientInventaireTest {
     @org.junit.jupiter.api.Test
     void equals() {
         Ingredient i = new Laitier();
-        Assertions.assertEquals(false, i.equals(null);)
+        Assertions.assertEquals(false, i.equals(null));
     }
 }
