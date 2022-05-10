@@ -2,6 +2,7 @@ package tests;
 
 import ingredients.Ingredient;
 import ingredients.IngredientInventaire;
+import ingredients.Laitier;
 import ingredients.Legume;
 import ingredients.exceptions.IngredientException;
 import org.junit.jupiter.api.Assertions;
@@ -27,5 +28,11 @@ class IngredientInventaireTest {
         Assertions.assertEquals(2, inv.getQuantite());
         IngredientException e = Assertions.assertThrows(IngredientException.class, () -> {inv.setQuantite(-2);});
         Assertions.assertEquals("IngredientException: Il n'est pas possible d'avoir une quantité negative", e.getMessage());
+    }
+
+    @org.junit.jupiter.api.Test
+    void equals() {
+        Ingredient i = new Laitier();
+        Assertions.assertEquals(false, i.equals(null);)
     }
 }
