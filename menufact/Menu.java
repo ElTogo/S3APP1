@@ -67,7 +67,7 @@ public class Menu {
     public void positionPrecedente() throws MenuException
     {
         if (courant-1 < 0)
-            throw new MenuException("On depasse le nombre minimale de plats");
+            throw new MenuException("On depasse le nombre minimale de plats.");
         else
             courant--;
     }

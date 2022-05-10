@@ -41,14 +41,28 @@ class MenuTest {
         m.ajoute(new PlatAuMenu(1,"",1));
         m.positionSuivante();
         Assertions.assertEquals(1, m.platCourant().getCode());
+        MenuException e = Assertions.assertThrows(MenuException.class, ()-> {m.positionSuivante();});
+        Assertions.assertEquals("MenuException: On depasse le nombre maximale de plats.", e.getMessage());
     }
 
     @Test
-    void positionPrecedente() {
-
+    void positionPrecedente() throws  MenuException{
+        m.ajoute(new PlatAuMenu(0,"",0));
+        m.ajoute(new PlatAuMenu(1,"",1));
+        m.position(1);
+        m.positionPrecedente();
+        Assertions.assertEquals(0, m.platCourant().getCode());
+        MenuException e = Assertions.assertThrows(MenuException.class, ()-> {m.positionPrecedente();});
+        Assertions.assertEquals("MenuException: On depasse le nombre minimale de plats.", e.getMessage());
     }
 
     @Test
     void testToString() {
+        m.ajoute(new PlatAuMenu(0,"",0));
+        m.ajoute(new PlatAuMenu(1,"",1));
+        Assertions.assertEquals("menufact.Menu{description='Un Menu', courant=0, plat=\n" +
+                "[menufact.plats.PlatAuMenu{code=0, description='', prix=0.0}\n" +
+                ", menufact.plats.PlatAuMenu{code=1, description='', prix=1.0}\n" +
+                "]}", m.toString());
     }
 }
