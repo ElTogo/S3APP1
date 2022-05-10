@@ -41,13 +41,22 @@ public class IngredientInventaire {
             this.quantite = quantite;
     }
 
+    /**
+     * Getter d'Ingredient
+     * @return L'Ingredient assigné lors de la création de l'objet
+     */
     public Ingredient getIngredient() {
         return ingredient;
     }
 
+    /**
+     * Surcharge d'opérateur Equals d'IngredientInventaire
+     * @param o Objet converti en IngredientInventaire pour la comparaison
+     * @return True si la classe d'Ingredient sont identiques, sinon false
+     */
     @Override
     public boolean equals(Object o) {
-        if (ingredient == ((IngredientInventaire)o).getIngredient()) {
+        if (ingredient.getClass() == ((IngredientInventaire)o).getIngredient().getClass()) {
             return true;
         }
         return false;
