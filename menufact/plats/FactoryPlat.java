@@ -5,6 +5,10 @@ import ingredients.IngredientInventaire;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Desing Pattern : Factory
+ * Cette classe sert à
+ */
 public class FactoryPlat {
     
     /**

@@ -1,3 +1,5 @@
+package tests;
+
 import menufact.exceptions.MenuException;
 import menufact.plats.PlatAuMenu;
 import menufact.Menu;

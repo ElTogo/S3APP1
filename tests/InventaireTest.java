@@ -1,3 +1,5 @@
+package tests;
+
 import ingredients.*;
 import inventaire.Inventaire;
 import org.junit.jupiter.api.Assertions;
