@@ -24,9 +24,10 @@ public class Chef {
     }
 
     /**
-     * //TODO : javadoc de la fonction
-     * @param p
-     * @throws IngredientException
+     * Méthode du modèle de conception Observer
+     * Déclenche la méthode preparerPlat de Chef avec le PlatChoisi
+     * @param p Le PlatChoisi pour la préparation
+     * @throws IngredientException Lorsqu'un changement de quantité en inventaire est inférieur à 1
      */
     public void update(PlatChoisi p) throws IngredientException {
         preparerPlat(p);
