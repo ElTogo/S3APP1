@@ -9,15 +9,19 @@ import menufact.plats.etats.Incomplet;
 
 import java.util.List;
 
+/**
+ * Desing Pattern Command
+ * Desing Patter Chain Of Resposability
+ */
 public class ValidationCommand implements ProcessusCommande {
 
     /**
-     *
+     * Valide si le plat peut être ajouter ou non
+     * Valide les types d'ingrédients disponible et leur quantite
      * @param p le plat à valider
-     * @returns
+     * @returns si oui ou non le plat peut etre cuisine
      * @throws FactureException
      */
-    //TODO : faire la javadoc
     public boolean invValidation(PlatChoisi p) throws FactureException
     {
         List<IngredientInventaire> ingredientInventaires = Inventaire.getInstance().getLesIngredients();
@@ -27,7 +31,6 @@ public class ValidationCommand implements ProcessusCommande {
             for (IngredientInventaire ingredient : p.getPlat().getIngredients()) {
 
                 if (ingredientInventaires.contains(ingredient)) {
-                    //TODO : regarder le bug pk ca entre pas
                     int index = ingredientInventaires.indexOf(ingredient);
 
                     if (ingredient.getQuantite() > ingredientInventaires.get(index).getQuantite()) {
@@ -44,6 +47,11 @@ public class ValidationCommand implements ProcessusCommande {
         return true;
     }
 
+    /**
+     * Surcharge de la fonction next
+     * @param p le plat choisi
+     * @throws FactureException Si on ne peut ajouter le plat
+     */
     @Override
     public void next(PlatChoisi p) throws FactureException {
         if (!invValidation(p)) {

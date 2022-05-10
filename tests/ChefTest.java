@@ -48,7 +48,8 @@ class ChefTest {
         pm.setIngredients(listeIngredients);
         pc = new PlatChoisi(pm, 1);
 
-        chef.preparerPlat(pc);
+        chef.update(pc);
+        inv.retirer(i);
     }
 
     @org.junit.jupiter.api.Test
@@ -88,5 +89,8 @@ class ChefTest {
         EtatPlat expected = new CompletServi();
         Assertions.assertEquals(expected.getClass(), pc.getEtatPlat().getClass());
         Assertions.assertEquals(1, inv.getLesIngredients().size());
+
+        inv.retirer(i);
+        inv.retirer(i3);
     }
 }
