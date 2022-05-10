@@ -205,6 +205,7 @@ public class Facture implements ProcessusCommande {
      * Getter de la valeur des TVS sur la facture
      * @return le montant des retenu des taxes
      */
+    
     public double getTVQTotal(){return tvq();}
     /**
      * Getter de la valeur total sur la facture
@@ -212,6 +213,12 @@ public class Facture implements ProcessusCommande {
      */
     public double getTotal(){return total();}
 
+    /**
+     * Surcharge de la fonciton Next
+     * @param p le plat a envoyer
+     * @throws FactureException
+     * @throws IngredientException
+     */
     @Override
     public void next(PlatChoisi p) throws FactureException, IngredientException {
         if (etat == FactureEtat.FERMEE) {
