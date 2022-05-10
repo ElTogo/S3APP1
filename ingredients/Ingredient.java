@@ -1,5 +1,9 @@
 package ingredients;
 
+/**
+ * Classe Ingredient
+ * Classe pouvant être étendu par des classes enfant afin de créer de nouveaux ingrédients
+ */
 public class Ingredient {
     private String nom;
     private String description;
