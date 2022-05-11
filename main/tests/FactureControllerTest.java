@@ -105,12 +105,12 @@ class FactureControllerTest {
         f.associerClient(client);
         PlatChoisi platChoisi = new PlatChoisi(new PlatAuMenu(0, "Un Plat", 10, listeIngredient1), 1);
         f.ajoutePlat(platChoisi);
-        fc.genererFacture();
+        Assertions.assertNotEquals(0,fc.genererFacture().length());
         i.retirer(ing1);
     }
 
     @Test
     void testToString() {
-        fc.toString();
+        Assertions.assertNotEquals(0, fc.toString().length());
     }
 }

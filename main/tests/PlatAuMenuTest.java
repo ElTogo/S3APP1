@@ -33,6 +33,8 @@ class PlatAuMenuTest {
     void setCode() {
         p.setCode(1);
         Assertions.assertEquals(1,p.getCode());
+        p.setCode(-1);
+        Assertions.assertEquals(-1, p.getCode());
     }
 
     @Test
@@ -44,6 +46,8 @@ class PlatAuMenuTest {
     void setDescription() {
         p.setDescription("Un Plat");
         Assertions.assertEquals("Un Plat", p.getDescription());
+        p.setDescription("");
+        Assertions.assertEquals("", p.getDescription());
     }
 
     @Test
@@ -55,6 +59,8 @@ class PlatAuMenuTest {
     void setPrix() {
         p.setPrix(2);
         Assertions.assertEquals(2,p.getPrix());
+        p.setPrix(-1);
+        Assertions.assertEquals(-1, p.getPrix());
     }
 
     @Test
